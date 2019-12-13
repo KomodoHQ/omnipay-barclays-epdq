@@ -61,16 +61,6 @@ class EssentialGateway extends AbstractGateway
         return $this->setParameter('clientId', $value);
     }
 
-    public function getTestMode()
-    {
-        return $this->getParameter('testMode');
-    }
-
-    public function setTestMode($value)
-    {
-        return $this->setParameter('testMode', $value);
-    }
-
     public function getCallbackMethod()
     {
         return $this->getParameter('callbackMethod');
