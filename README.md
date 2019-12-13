@@ -66,7 +66,7 @@ $response->redirect();
 
 ### Handling complete purchase request
 
-When the user submit the payment form, the gateway will redirect you to the URL you have specified in prameters or in the backoffice. The code below gives an example how to handle the server feedback answer.
+When the user submit the payment form, the gateway will redirect you to the URL you have specified in paramaters or in the backoffice. The code below gives an example how to handle the server feedback answer.
 
 ```php
 /**
