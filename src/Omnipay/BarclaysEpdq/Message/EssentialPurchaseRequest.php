@@ -180,6 +180,23 @@ class EssentialPurchaseRequest extends AbstractRequest
         return $this->setParameter('feedback', $value);
     }
 
+    /**
+     * @return Alias
+     */
+    public function getAlias()
+    {
+        return $this->getParameter('alias');
+    }
+
+    /**
+     * @param Alias $value
+     * @return AbstractRequest
+     */
+    public function setAlias($value)
+    {
+        return $this->setParameter('alias', $value);
+    }
+
     public function getData()
     {
         $this->validate('amount', 'clientId', 'currency', 'language');
@@ -297,6 +314,14 @@ class EssentialPurchaseRequest extends AbstractRequest
             $data['ECOM_SHIPTO_TELECOM_FAX_NUMBER'] = $delivery->getDeliveryFax();
             $data['ECOM_SHIPTO_TELECOM_PHONE_NUMBER'] = $delivery->getDeliveryPhone();
             $data['ECOM_SHIPTO_DOB'] = $delivery->getDeliveryBirthDate();
+        }
+
+        $alias = $this->getAlias();
+        if ($alias) {
+            $data['ALIAS'] = $alias->getAlias();
+            $data['ALIASID'] = $alias->getAliasId();
+            $data['ALIASOPERATION'] = $alias->getAliasOperation();
+            $data['ALIASUSAGE'] = $alias->getAliasUsage();
         }
 
         $data = $this->cleanParameters($data);
