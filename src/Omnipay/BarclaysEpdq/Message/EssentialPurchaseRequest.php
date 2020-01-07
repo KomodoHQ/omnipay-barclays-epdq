@@ -18,6 +18,12 @@ class EssentialPurchaseRequest extends AbstractRequest
     protected $liveEndpoint = 'https://payments.epdq.co.uk/ncol/prod/orderstandard_utf8.asp';
     protected $testEndpoint = 'https://mdepayments.epdq.co.uk/ncol/test/orderstandard_utf8.asp';
 
+    protected $supportedHashAlgorithms = [
+        'sha1',
+        'sha256',
+        'sha512',
+    ];
+
     public function getClientId()
     {
         return $this->getParameter('clientId');
@@ -95,6 +101,16 @@ class EssentialPurchaseRequest extends AbstractRequest
     public function setShaIn($value)
     {
         return $this->setParameter('shaIn', $value);
+    }
+
+    public function getShaAlgorithm()
+    {
+        return $this->getParameter('shaAlgorithm');
+    }
+
+    public function setShaAlgorithm($value)
+    {
+        return $this->setParameter('shaAlgorithm', $value);
     }
 
     public function getShaOut()
@@ -313,7 +329,16 @@ class EssentialPurchaseRequest extends AbstractRequest
             $shaString .= sprintf('%s=%s%s', strtoupper($key), $value, $shaKey);
         }
 
-        return strtoupper(sha1($shaString));
+        return $this->createShaString($shaString);
+    }
+
+    public function createShaString($shaString)
+    {
+        if (!in_array($this->getShaAlgorithm(), $this->supportedHashAlgorithms)) {
+            return strtoupper(hash('sha1', $shaString));
+        }
+
+        return strtoupper(hash($this->getShaAlgorithm(), $shaString));
     }
 
     public function sendData($data)

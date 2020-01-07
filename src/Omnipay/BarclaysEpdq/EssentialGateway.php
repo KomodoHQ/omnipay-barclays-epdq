@@ -71,6 +71,16 @@ class EssentialGateway extends AbstractGateway
         return $this->setParameter('callbackMethod', $value);
     }
 
+    public function getShaAlgorithm()
+    {
+        return $this->getParameter('shaAlgorithm');
+    }
+
+    public function setShaAlgorithm($value)
+    {
+        return $this->setParameter('shaAlgorithm', $value);
+    }
+
     public function getShaIn()
     {
         return $this->getParameter('shaIn');
