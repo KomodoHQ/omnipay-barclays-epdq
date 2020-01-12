@@ -76,6 +76,24 @@ class Alias
     }
 
     /**
+     * Alias persisted after use
+     *
+     * @return string
+     */
+    public function getAliasPersistedAfterUse()
+    {
+        return $this->getParameter('aliasPersistedAfterUse');
+    }
+
+    /**
+     * @param string $value
+     */
+    public function setAliasPersistedAfterUse($value)
+    {
+        $this->setParameter('aliasPersistedAfterUse', $value);
+    }
+
+    /**
      * Alias ID
      *
      * @return string
