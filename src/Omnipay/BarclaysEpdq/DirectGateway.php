@@ -14,7 +14,7 @@ class DirectGateway extends AbstractGateway
 
     public function getName()
     {
-        return 'BarclaysDirectEpdq';
+        return 'BarclaysEpdqDirectLink';
     }
 
     public function getDefaultParameters()
