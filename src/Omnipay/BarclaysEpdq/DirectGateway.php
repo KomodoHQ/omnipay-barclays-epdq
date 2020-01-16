@@ -121,6 +121,11 @@ class DirectGateway extends AbstractGateway
         return $this->getParamater('cancelUrl');
     }
 
+    public function setSuccessUrl($value)
+    {
+        $this->setParameter('returnUrl', $value);
+    }
+
     public function setReturnUrl($value)
     {
         $this->setParameter('returnUrl', $value);

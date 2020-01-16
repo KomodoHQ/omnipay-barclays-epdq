@@ -86,6 +86,11 @@ class FlexCheckoutPurchaseRequest extends AbstractRequest
         return $this->setParameter('cancelUrl', substr($value, 0, 200));
     }
 
+    public function setSuccessUrl($value)
+    {
+        return $this->setParameter('returnUrl', substr($value, 0, 200));
+    }
+
     /**
      * This method keeps the backward compatibility with setDeclineUrl and setExceptionUrl.
      * It fills returnUrl, declineUrl and exceptionUrl with the same value.
