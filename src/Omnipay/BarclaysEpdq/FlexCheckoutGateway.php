@@ -135,6 +135,21 @@ class FlexCheckoutGateway extends AbstractGateway
         return $this;
     }
 
+    public function setDeclineUrl($value)
+    {
+        $this->setParameter('declineUrl', $value);
+    }
+
+    public function setExceptionUrl($value)
+    {
+        $this->setParameter('exceptionUrl', $value);
+    }
+
+    public function setCancelUrl($value)
+    {
+        $this->setParameter('cancelUrl', $value);
+    }
+
     public function getLanguage()
     {
         return $this->getParameter('language');

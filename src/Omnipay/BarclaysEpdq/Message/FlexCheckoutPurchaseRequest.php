@@ -56,6 +56,11 @@ class FlexCheckoutPurchaseRequest extends AbstractRequest
         return $this->getParameter('returnUrl');
     }
 
+    public function getSuccessUrl()
+    {
+        return $this->getParameter('returnUrl');
+    }
+    
     public function getDeclineUrl()
     {
         return $this->getParameter('declineUrl');
