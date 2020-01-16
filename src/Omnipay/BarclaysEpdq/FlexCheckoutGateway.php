@@ -116,6 +116,11 @@ class FlexCheckoutGateway extends AbstractGateway
         return $this->getParameter('exceptionUrl');
     }
 
+    public function getCancelUrl()
+    {
+        return $this->getParamater('cancelUrl');
+    }
+
     public function setReturnUrl($value)
     {
         $this->setParameter('returnUrl', $value);
