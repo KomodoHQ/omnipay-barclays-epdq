@@ -3,6 +3,7 @@
 namespace Omnipay\BarclaysEpdq\Message;
 
 use Omnipay\BarclaysEpdq\Helpers\XMLHelper;
+use Omnipay\BarclaysEpdq\TransactionStatus;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\AbstractResponse;
@@ -13,11 +14,16 @@ use Omnipay\Common\Message\RedirectResponseInterface;
  */
 class DirectPurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
-    protected $statusCode;
+    const SUCCESS_STATUSES = [
+        'authorised',
+        'payment_requested',
+    ];
+
+    protected $requestCode;
 
     public function __construct(AbstractRequest $request, $data)
     {
-        $this->statusCode = $data->getStatusCode();
+        $this->requestCode = $data->getStatusCode();
 
         $content = $data->getBody()->getContents();
 
@@ -42,18 +48,21 @@ class DirectPurchaseResponse extends AbstractResponse implements RedirectRespons
 
     public function isSuccessful()
     {
-        if (
-            isset($this->data['NCERROR']) && $this->data['NCERROR'] !== '' && $this->data['NCERROR'] === '0' &&
-            isset($this->data['PAYID']) && $this->data['PAYID'] !== '' && $this->data['PAYID'] !== '0'
-        ) {
-            return true;
-        }
+        return $this->getStatusMessage() && in_array($this->getStatusMessage(), self::SUCCESS_STATUSES);
+    }
 
-        return false;
+    public function getStatusCode()
+    {
+        return isset($this->data['STATUS']) ? (int)$this->data['STATUS'] : null;
+    }
+
+    public function getStatusMessage()
+    {
+        return TransactionStatus::getStatusMessageByCode($this->getStatusCode());
     }
 
     public function getCode()
     {
-        return $this->statusCode;
+        return $this->requestCode;
     }
 }
