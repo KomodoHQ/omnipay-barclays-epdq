@@ -56,6 +56,11 @@ class DirectPurchaseResponse extends AbstractResponse implements RedirectRespons
         return isset($this->data['STATUS']) ? (int)$this->data['STATUS'] : null;
     }
 
+    public function getTransactionReference()
+    {
+        return isset($this->data['PAYID']) ? $this->data['PAYID'] : null;
+    }
+
     public function getStatusMessage()
     {
         return TransactionStatus::getStatusMessageByCode($this->getStatusCode());
