@@ -221,17 +221,11 @@ class FlexCheckoutPurchaseRequest extends AbstractRequest
         $data['PSPID']          = $this->getClientId();
 
         $data['ORDERID']        = $this->getTransactionId();
-        // Useful optional parameter which can be used as a variable in the post-payment feedback URL
-        // eg. The URL can be set in the ePDQ control panel as something like:
-        //     "https://www.example.com/callback/<PARAMVAR>"
-//        $data['PARAMVAR']       = $this->getTransactionId();
         $data['CURRENCY']       = $this->getCurrency();
         $data['LANGUAGE']       = $this->getLanguage();
         $data['AMOUNT']         = $this->getAmountInteger();
 
         $data['ACCEPTURL']      = $this->getReturnUrl();
-//        $data['CANCELURL']      = $this->getCancelUrl();
-//        $data['DECLINEURL']     = $this->getDeclineUrl();
         $data['EXCEPTIONURL']   = $this->getExceptionUrl();
 
         $data['PAYMENTMETHOD']   = $this->getPaymentMethod();
@@ -346,9 +340,6 @@ class FlexCheckoutPurchaseRequest extends AbstractRequest
         if ($this->getShaIn()) {
             $data['SHASIGN'] = $this->calculateSha($data, $this->getShaIn());
         }
-//
-//        echo '<pre>';
-//        print_r($data);exit;
 
         return $data;
     }

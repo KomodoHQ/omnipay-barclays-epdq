@@ -123,7 +123,7 @@ class FlexCheckoutGateway extends AbstractGateway
 
     public function setSuccessUrl($value)
     {
-        $this->setParameter('returnUrl', $value);
+        return $this->setParameter('returnUrl', $value);
     }
     
     public function setReturnUrl($value)
@@ -137,17 +137,17 @@ class FlexCheckoutGateway extends AbstractGateway
 
     public function setDeclineUrl($value)
     {
-        $this->setParameter('declineUrl', $value);
+        return $this->setParameter('declineUrl', $value);
     }
 
     public function setExceptionUrl($value)
     {
-        $this->setParameter('exceptionUrl', $value);
+        return $this->setParameter('exceptionUrl', $value);
     }
 
     public function setCancelUrl($value)
     {
-        $this->setParameter('cancelUrl', $value);
+        return $this->setParameter('cancelUrl', $value);
     }
 
     public function getLanguage()

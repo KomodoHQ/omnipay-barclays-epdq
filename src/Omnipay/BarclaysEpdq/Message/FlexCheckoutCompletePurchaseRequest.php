@@ -46,7 +46,6 @@ class FlexCheckoutCompletePurchaseRequest extends FlexCheckoutPurchaseRequest
 
     public function sendData($data)
     {
-        // todo
-        // return $this->response = new FlexCheckoutCompletePurchaseResponse($this, $data);
+        return $this->response = new FlexCheckoutCompletePurchaseResponse($this, $data);
     }
 }
