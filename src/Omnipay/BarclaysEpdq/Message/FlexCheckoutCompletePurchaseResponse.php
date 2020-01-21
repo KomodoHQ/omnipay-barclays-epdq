@@ -41,6 +41,11 @@ class FlexCheckoutCompletePurchaseResponse extends AbstractResponse
         return isset($this->data['Card_CardHolderName']) ? $this->data['Card_CardHolderName'] : null;
     }
 
+    public function getCardNumber()
+    {
+        return isset($this->data['Card_CardNumber']) ? substr($this->data['Card_CardNumber'], -4) : null;
+    }
+
     public function getStorePermanently()
     {
         return isset($this->data['Alias_StorePermanently']) && $this->data['Alias_StorePermanently'] === 'Y' ? 1 : 0;
